@@ -1,8 +1,7 @@
-
 export default function Analytics() {
   return (
     <div>
-        This is Analytics Page!
+      <h1>This is Analytics Page!</h1>
     </div>
-  )
+  );
 }

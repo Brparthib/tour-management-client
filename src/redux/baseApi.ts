@@ -4,9 +4,11 @@ import axiosBaseQuery from "./axiosBaseQuery";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: axiosBaseQuery(),
+  tagTypes: ["USER"],
   endpoints: () => ({}),
 });
 
 // fetchBaseQuery({
-//     baseUrl: "https://tour-management-system-server-theta.vercel.app/api/v1",
+//     baseUrl: config.baseUrl,
+// credentials: "include",
 //   }),

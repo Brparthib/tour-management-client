@@ -96,7 +96,7 @@ export function LoginForm({
                     <Input placeholder="john@example.com" {...field} />
                   </FormControl>
                   <FormDescription className="sr-only">
-                    This is you email
+                    This is your email
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

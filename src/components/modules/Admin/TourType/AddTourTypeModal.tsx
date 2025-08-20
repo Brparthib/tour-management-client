@@ -51,46 +51,46 @@ export function AddTourTypeModal() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <form>
-        <DialogTrigger asChild>
-          <Button className="cursor-pointer" size="sm" variant="outline">
-            <Plus /> Add Tour Type
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Add Tour Type</DialogTitle>
-          </DialogHeader>
-          <Form {...form}>
-            <form id="add-tour-type" onSubmit={form.handleSubmit(onSubmit)}>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Type Type Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} value={field.value || ""} />
-                    </FormControl>
-                    <FormDescription className="sr-only">
-                      This is tour type name
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <Button form="add-tour-type" type="submit">
-              Add
+      <DialogTrigger asChild>
+        <Button className="cursor-pointer" size="sm" variant="outline">
+          <Plus /> Add Tour Type
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add Tour Type</DialogTitle>
+        </DialogHeader>
+        <Form {...form}>
+          <form id="add-tour-type" onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tour Type Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} value={field.value || ""} />
+                  </FormControl>
+                  <FormDescription className="sr-only">
+                    This is tour type name
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button className="cursor-pointer" variant="outline">
+              Cancel
             </Button>
-          </DialogFooter>
-        </DialogContent>
-      </form>
+          </DialogClose>
+          <Button className="cursor-pointer" form="add-tour-type" type="submit">
+            Add
+          </Button>
+        </DialogFooter>
+      </DialogContent>
     </Dialog>
   );
 }

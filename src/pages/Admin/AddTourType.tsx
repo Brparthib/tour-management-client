@@ -1,3 +1,4 @@
+import { DeleteConfirmation } from "@/components/DeleteConfirmation";
 import { AddTourTypeModal } from "@/components/modules/Admin/TourType/AddTourTypeModal";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,11 +9,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetTourTypesQuery } from "@/redux/features/Tour/tour.api";
+import {
+  useGetTourTypesQuery,
+  useRemoveTourTypeMutation,
+} from "@/redux/features/Tour/tour.api";
 import { Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function AddTourType() {
   const { data } = useGetTourTypesQuery(undefined);
+  const [removeTourType] = useRemoveTourTypeMutation();
+
+  const handleRemoveTourType = async (tourTypeId: string) => {
+    const toastId = toast.loading("Removing...");
+    try {
+      const res = await removeTourType(tourTypeId).unwrap();
+      if (res.success) {
+        toast.success("Tour Type Remove Successfully", { id: toastId });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="px-5 py-5">
@@ -28,16 +46,21 @@ export default function AddTourType() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.data?.map((item: { _id: string; name: string }) => (
+          {data?.map((item: { _id: string; name: string }) => (
             <TableRow key={item?._id}>
               <TableCell className="font-medium">{item?.name}</TableCell>
               <TableCell className="text-right">
-                <Button
-                  className="bg-transparent text-foreground hover:text-white cursor-pointer"
-                  size="sm"
+                <DeleteConfirmation
+                  onConfirm={() => handleRemoveTourType(item._id)}
                 >
-                  <Trash2 />
-                </Button>
+                  <Button
+                    variant="ghost"
+                    className="bg-transparent text-foreground hover:text-rose-600 cursor-pointer"
+                    size="sm"
+                  >
+                    <Trash2 />
+                  </Button>
+                </DeleteConfirmation>
               </TableCell>
             </TableRow>
           ))}

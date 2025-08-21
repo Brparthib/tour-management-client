@@ -38,7 +38,7 @@ import { useGetDivisionsQuery } from "@/redux/features/division/division.api";
 import {
   useAddTourMutation,
   useGetTourTypesQuery,
-} from "@/redux/features/Tour/tour.api";
+} from "@/redux/features/tour/tour.api";
 import type { IErrorResponse } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
@@ -134,15 +134,13 @@ export default function AddTour() {
     name: "tourPlan",
   });
 
-  console.log(includeFields);
-
   const divisionOptions = divisionData?.map(
     (item: { _id: string; name: string }) => ({
       value: item._id,
       label: item.name,
     })
   );
-  const tourTypeOptions = tourTypeData?.map(
+  const tourTypeOptions = tourTypeData?.data?.map(
     (item: { _id: string; name: string }) => ({
       value: item._id,
       label: item.name,
